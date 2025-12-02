@@ -1,102 +1,142 @@
-Curadoria A3 — README
-1. Introdução
+📌 Descrição Geral do Projeto
 
-O projeto Curadoria A3 tem como objetivo implementar um sistema completo para gerenciamento de itens em um acervo, incluindo funcionalidades de autenticação, controle de usuários, cadastro de obras e administração geral da plataforma. O sistema foi desenvolvido com foco em boas práticas de engenharia de software, modelagem de dados e integração entre backend, banco de dados e scripts de inicialização (seed).
+O Curadoria A3 é um projeto acadêmico desenvolvido como uma aplicação desktop local, implementada em Java (JDK 11+) utilizando Swing para a interface gráfica.
+O sistema não utiliza Node.js, Express, nem quaisquer tecnologias de back-end web.
+Toda a lógica da aplicação é executada localmente na máquina do usuário.
 
-Este documento apresenta instruções formais para instalação, configuração e execução do ambiente, além de descrever brevemente a estrutura do projeto.
+O objetivo do sistema é fornecer uma plataforma simples para gerenciamento de usuários e recursos digitais, com funcionalidades de autenticação, administração e cadastro de conteúdos relacionados a temas como IA responsável, cibersegurança e privacidade.
 
-2. Tecnologias Utilizadas
+🖥️ Tecnologias Utilizadas
 
-O sistema Curadoria A3 utiliza o seguinte conjunto de tecnologias:
+Java 11+
 
-Node.js — Ambiente de execução do backend.
+Swing (GUI Desktop)
 
-Express.js — Framework para criação de APIs.
+Maven como gerenciador de dependências
 
-MySQL — Sistema gerenciador de banco de dados relacional.
+MySQL para persistência dos dados
 
-Prisma ORM — Mapeamento objeto-relacional e ferramentas de migração.
+JDBC (MySQL Connector/J) para comunicação com o banco
 
-BCrypt — Hash de senhas para segurança de credenciais.
+❗ Não são utilizadas tecnologias web como Node.js, Express, JavaScript no back-end, APIs REST ou servidores externos.
+Toda a aplicação roda de forma 100% local.
 
-dotenv — Gerenciamento de variáveis de ambiente.
+📁 Arquitetura e Estrutura
 
-3. Requisitos para Execução
+O projeto utiliza uma estrutura simplificada, com todas as telas e lógica concentradas em um único arquivo Java principal (Main.java), para fins de estudo e organização direcionada à atividade acadêmica.
 
-Antes de iniciar o sistema, certifique-se de possuir:
+src/
+ └── main/
+      └── java/
+           └── app/
+                └── Main.java   <- Todas as telas (Login, Admin, Usuário, Diálogos)
+sql/
+ └── safetecnolife_schema.sql   <- Script de criação do banco de dados
+pom.xml                          <- Configuração Maven
+README.md
 
-Node.js (versão LTS)
+🗄️ Banco de Dados
 
-MySQL Server e MySQL Workbench
+A aplicação utiliza um banco MySQL local chamado:
 
-NPM ou Yarn
-
-Acesso para criação de schema no MySQL
-
-4. Configuração do Banco de Dados
-4.1 Criação do Schema
-
-No MySQL Workbench, execute:
-
-CREATE DATABASE curadoriaA3;
-
-4.2 Configuração do Usuário
-
-O sistema utiliza credenciais definidas no arquivo .env.
-Exemplo:
-
-DATABASE_URL="mysql://admin:senha@localhost:3306/curadoriaA3"
+safetecnolife
 
 
-Certifique-se de que o usuário utilizado (ex.: admin) possui:
+O script para criar o schema, tabelas e dados iniciais está localizado em:
 
-Permissão de acesso ao schema
-
-Atributo Account Locked = OFF
-
-Account expiration desativado
-
-Autenticação por senha válida
-
-5. Execução das Migrações e Seed
-5.1 Instalar dependências
-npm install
-
-5.2 Aplicar migrações do Prisma
-npx prisma migrate dev
-
-5.3 Executar o seed
-npx prisma db seed
+/sql/safetecnolife_schema.sql
 
 
-O seed criará o usuário administrativo padrão, cujo hash de senha já está definido no script.
+Basta executá-lo no MySQL Workbench ou terminal antes de rodar o sistema.
 
-6. Estrutura do Projeto
-/src
- ├── controllers/     → Lógica de controle das rotas
- ├── services/        → Regras de negócio
- ├── prisma/          → Schema, migrações e seed
- ├── routes/          → Definição de rotas da API
- └── server.js        → Inicialização do servidor
+🚀 Como Executar o Projeto
+1. Criar o Banco de Dados
 
-7. Execução do Sistema
-7.1 Iniciar o servidor
-npm start
+Execute o conteúdo do arquivo:
 
-7.2 Endpoints disponíveis
+sql/safetecnolife_schema.sql
 
-A API disponibiliza recursos para:
 
-Autenticação
+Isso criará as tabelas, relações e usuários iniciais.
 
-Gerenciamento de usuários
+2. Ajustar configurações de conexão
 
-Inserção, consulta e atualização de itens do acervo
+No arquivo Main.java, dentro da classe interna DBUtil, ajuste se necessário:
 
-Controle administrativo
+public static final String DB_URL = "jdbc:mysql://localhost:3306/safetecnolife";
+public static final String DB_USER = "root";
+public static final String DB_PASS = "sua_senha";
 
-A documentação detalhada pode ser expandida em futuras versões do projeto.
+3. Compilar e Executar com Maven
 
-8. Considerações Finais
+Para gerar o JAR:
 
-O projeto Curadoria A3 foi desenvolvido com foco na aplicação prática de conceitos de modelagem de dados, segurança, arquitetura de software e persistência de informações. A estrutura modularizada facilita sua manutenção, evolução e adaptabilidade a demandas futuras.
+mvn clean package
+
+
+O JAR executável ficará em:
+
+target/safe-tecnolife-1.0.1-shaded.jar
+
+
+Para executar:
+
+java -jar target/safe-tecnolife-1.0.1-shaded.jar
+
+👤 Usuários iniciais (Seed)
+
+Admin
+
+Usuário: admin
+
+Senha: admin123
+
+Usuário comum
+
+Usuário: user1
+
+Senha: user123
+
+📚 Funcionalidades
+✔ Login com diferenciação de perfis
+✔ Painel de administrador
+
+Cadastro de usuários
+
+Edição de usuários
+
+Ativação/Inativação
+
+Visualização da lista completa
+
+✔ Painel de usuário
+
+Cadastro de recursos
+
+Listagem dos recursos criados
+
+Categorias temáticas
+
+🎯 Objetivo Acadêmico
+
+Este projeto foi construído com foco em:
+
+prática de Java Desktop
+
+manipulação de MySQL via JDBC
+
+desenvolvimento de interface gráfica com Swing
+
+compreensão de modelos CRUD em um ambiente local
+
+arquitetura simplificada para fins de didática
+
+📄 Observações Finais
+
+O sistema não depende de serviços externos.
+
+Todo processamento ocorre localmente.
+
+A estrutura foi simplificada para fins de avaliação acadêmica.
+
+Se quiser uma versão mais curta, uma versão para impressão, ou um README mais técnico, posso gerar também!
