@@ -1,0 +1,17 @@
+UML - Safe Tecnolife (simples)
+---------------------------------
+Classes principais:
+- Main
+- Config
+- TelaLogin
+- TelaCadastroUsuario
+- TelaPrincipal
+- TelaGestaoUsuarios
+- TelaCadastroRecurso
+- TelaListarRecursos
+
+Relacionamentos:
+- TelaLogin -> TelaPrincipal (após autenticação)
+- TelaPrincipal -> TelaGestaoUsuarios (se ADMIN)
+- TelaPrincipal -> TelaCadastroRecurso / TelaListarRecursos (se USUARIO)
+- DB: usuarios (1) --- (N) recursos
