@@ -24,7 +24,7 @@ Toda a aplicação roda de forma 100% local.
 📁 Arquitetura e Estrutura
 
 O projeto utiliza uma estrutura simplificada, com todas as telas e lógica concentradas em um único arquivo Java principal (Main.java), para fins de estudo e organização direcionada à atividade acadêmica.
-
+{
 src/
  └── main/
       └── java/
@@ -34,17 +34,18 @@ sql/
  └── safetecnolife_schema.sql   <- Script de criação do banco de dados
 pom.xml                          <- Configuração Maven
 README.md
+}
 
 🗄️ Banco de Dados
 
 A aplicação utiliza um banco MySQL local chamado:
 
-safetecnolife
+{safetecnolife}
 
 
 O script para criar o schema, tabelas e dados iniciais está localizado em:
 
-/sql/safetecnolife_schema.sql
+{/sql/safetecnolife_schema.sql}
 
 
 Basta executá-lo no MySQL Workbench ou terminal antes de rodar o sistema.
@@ -54,7 +55,7 @@ Basta executá-lo no MySQL Workbench ou terminal antes de rodar o sistema.
 
 Execute o conteúdo do arquivo:
 
-sql/safetecnolife_schema.sql
+{sql/safetecnolife_schema.sql}
 
 
 Isso criará as tabelas, relações e usuários iniciais.
@@ -62,10 +63,11 @@ Isso criará as tabelas, relações e usuários iniciais.
 2. Ajustar configurações de conexão
 
 No arquivo Main.java, dentro da classe interna DBUtil, ajuste se necessário:
-
+{
 public static final String DB_URL = "jdbc:mysql://localhost:3306/safetecnolife";
 public static final String DB_USER = "root";
 public static final String DB_PASS = "sua_senha";
+}
 
 3. Compilar e Executar com Maven
 
